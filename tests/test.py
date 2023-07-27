@@ -58,22 +58,11 @@ def execute(T):
         xx, xy, xz = ptk.prev_tf
         nx, ny, nz = T
 
-        # alpha_horizon = np.deg2rad(np.arcsin((nx - xx) / nz))
-        # alpha_vertical = np.deg2rad(np.arcsin((ny - xy) / nz))
-
-        # print('*************************************************************************')
-        # print(alpha_horizon)
-        # print(alpha_vertical)
-        # print('*************************************************************************')
-
-    # inputMatrix = [[0.0, -0.785], [0.0 for _ in range(2)], [0.0 for _ in range(2)]]
-    # robot.lookAt(inputMatrix)
-
     # tilt [-0.785 (U), 1.5708 (D) rad] = [-45, 90] 
     # pan [-1.5708 (R), 1.5708 (L) rad] = [-90, 90] 
 
-        h_threshold = 17
-        v_threshold = 12
+        h_threshold = 40
+        v_threshold = 30
 
         if nx > h_threshold:
             # move right
@@ -128,6 +117,7 @@ def image_callback(img_msg):
      # Try to convert the ROS Image message to a CV2 Image
     try:
         cv_image = bridge.imgmsg_to_cv2(img_msg, "passthrough")
+        cv_image = cv2.cvtColor(cv_image, cv2.COLOR_BGR2RGB)
     except CvBridgeError as e:
         rospy.logerr("CvBridge Error: {0}".format(e))
 
