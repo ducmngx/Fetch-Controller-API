@@ -1,0 +1,4 @@
+rospy
+apriltag
+argparse
+numpy

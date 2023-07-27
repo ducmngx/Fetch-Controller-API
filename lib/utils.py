@@ -7,9 +7,4 @@ class Algorithms:
     def __init__(self) -> None:
         pass
 
-class BoardTracker:
-    '''
-    Visual tracker to track movements of the board
-    '''
-    def __init__(self) -> None:
-        pass
+

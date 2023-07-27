@@ -24,6 +24,9 @@ ARM_AND_TORSO_JOINTS = ['torso_lift_joint',
 HEAD_JOINTS = ['head_pan_joint',
                'head_tilt_joint']
 
+# tilt_joint ranges [-0.785 (U), 1.5708 (D) rad] = [-45, 90] 
+# pan_joint ranges [-1.5708 (R), 1.5708 (L) rad] = [-90, 90] 
+
 ARM_TORSO_CONTROL_GROUP = 'arm_with_torso_controller/follow_joint_trajectory'
 HEAD_CONTROL_GROUP = 'head_controller/follow_joint_trajectory'
 
@@ -36,3 +39,15 @@ MAX_LINEAR_VELOCITY = 4.8
 ### VISION PARAM
 VISION_IMAGE_TOPIC = "/head_camera/rgb/image_raw" # "/head_camera/rgb/image_rect_color"
 VISION_CAMERA_INFO_TOPIC = "/head_camera/rgb/camera_info"
+
+# Calibration matrix for head camera
+'''  
+[fx  0 cx]
+[ 0 fy cy]
+[ 0  0  1]
+'''
+CAMERA_CALIBRATION_MATRIX = [574.0527954101562, 0.0, 319.5, 0.0, 574.0527954101562, 239.5, 0.0, 0.0, 1.0]
+
+# Intrinsic parameters for camera (fx, fy, cx, cy)
+INTRINSIC_PARAM_CAMERA = (CAMERA_CALIBRATION_MATRIX[0], CAMERA_CALIBRATION_MATRIX[4], CAMERA_CALIBRATION_MATRIX[2], CAMERA_CALIBRATION_MATRIX[5])
+APRIL_TAG_SIZE = 165.1 #mm
