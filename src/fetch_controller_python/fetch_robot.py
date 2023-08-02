@@ -6,7 +6,8 @@ from fetch_gripper import Gripper
 from fetch_move import FetchBaseMove
 from fetch_manipulator import FetchManipulator
 from lib.utils import Algorithms
-# from lib import utils
+from sensor_msgs.msg import JointState
+from lib.params import ARM_AND_TORSO_JOINTS, JOINT_STATES
 
 '''
 This is the wrapper of all Fetch's functionalities
@@ -18,6 +19,24 @@ class FetchRobot:
         self.driver = FetchBaseMove()
         self.manipulator = FetchManipulator() 
         self.gripper = Gripper()
+        self.joints = {ARM_AND_TORSO_JOINTS[i]: 0.0 for i in range(len(ARM_AND_TORSO_JOINTS))}
+        rospy.Subscriber(JOINT_STATES, JointState, self.joint_states_callback, queue_size=1)
+        # rospy.spin()
+
+    def joint_states_callback(self, message):
+        '''
+        Add comments
+        '''
+        for i,name in enumerate(message.name):
+            pos = message.position[i]
+            if name in self.joints.keys():
+                self.joints[name] = pos   
+    
+    def get_joint_states(self):
+        '''
+        Add comments
+        '''
+        return self.joints
 
     def getVisual(self):
         pass

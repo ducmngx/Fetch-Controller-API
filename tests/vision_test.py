@@ -150,6 +150,10 @@ if __name__ == '__main__':
     robot = FetchRobot()
     inputMatrix = [[0.0, 0.0], [0.0 for _ in range(2)], [0.0 for _ in range(2)]]
     robot.lookAt(inputMatrix)
+    # robot.getReady()
+    # inputMatrix2 = [[1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [0.0 for _ in range(len(ARM_AND_TORSO_JOINTS))], [0.0 for _ in range(len(ARM_AND_TORSO_JOINTS))]]
+    # robot.execute(inputMatrix2)
+
     tracker = BoardTracker()
     ptk = PoseTracker()
 

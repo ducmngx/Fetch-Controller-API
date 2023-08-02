@@ -15,7 +15,6 @@ class FetchManipulator:
     
     def __init__(self, arm_control_group=ARM_TORSO_CONTROL_GROUP, 
                  head_control_group=HEAD_CONTROL_GROUP):
-        # rospy.init_node("control_arm_joints")
         # head
         self.head_client = actionlib.SimpleActionClient(head_control_group, FollowJointTrajectoryAction)
         self.head_joints = HEAD_JOINTS

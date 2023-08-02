@@ -27,10 +27,6 @@ class BoardTracker:
         pitch = np.arccos(pose_rotation_matrix[2, 2])
         roll = np.arctan2(pose_rotation_matrix[2, 0], pose_rotation_matrix[2, 1])
 
-        # yaw=atan2(R(2,1),R(1,1))
-        # pitch=atan2(-R(3,1),sqrt(R(3,2)^2+R(3,3)^2)))
-        # roll=atan2(R(3,2),R(3,3))
-
 
         return pose_transform_matrix, pose_rotation_matrix, pose_translation_matrix#, (roll, pitch, yaw)
     
