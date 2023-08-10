@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import sys, os
-sys.path.insert(1, os.path.abspath("."))
+# sys.path.insert(1, os.path.abspath("."))
+sys.path.insert(1, os.path.abspath("./.."))
 import rospy
 import actionlib
 from control_msgs.msg    import FollowJointTrajectoryGoal
@@ -23,7 +24,7 @@ class FetchManipulator:
         self.arm_joints = ARM_AND_TORSO_JOINTS
 
 
-    def execute(self, manipulation_matrix, execution_time=1):
+    def execute(self, manipulation_matrix, execution_time=2):
         arm_trajectory = JointTrajectory()
         arm_trajectory.joint_names = self.arm_joints
         arm_trajectory.points.append(JointTrajectoryPoint())

@@ -1,7 +1,8 @@
 import rospy
 from geometry_msgs.msg import Twist, Vector3
 import sys, os
-sys.path.insert(1, os.path.abspath("."))
+# sys.path.insert(1, os.path.abspath("."))
+sys.path.insert(1, os.path.abspath("./.."))
 from lib.params import MOVE_NODE, CONTROL_RATE, MAX_LINEAR_VELOCITY
 '''
 This is the wrapper of Fetch's ability to move

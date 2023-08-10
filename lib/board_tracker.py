@@ -28,7 +28,7 @@ class BoardTracker:
         roll = np.arctan2(pose_rotation_matrix[2, 0], pose_rotation_matrix[2, 1])
 
 
-        return pose_transform_matrix, pose_rotation_matrix, pose_translation_matrix#, (roll, pitch, yaw)
+        return pose_transform_matrix, pose_rotation_matrix, pose_translation_matrix #, (roll, pitch, yaw)
     
     def rotationMatrixToEulerAngles(R) :    
         sy = np.sqrt(R[0,0] * R[0,0] +  R[1,0] * R[1,0])

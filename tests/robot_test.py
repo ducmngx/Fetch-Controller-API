@@ -2,29 +2,32 @@
 import rospy
 import sys, time, os
 sys.path.insert(1, os.path.abspath("."))
-from sensor_msgs.msg import JointState
-from std_msgs.msg import Float64
-from lib.params import ARM_AND_TORSO_JOINTS
 from src.fetch_controller_python.fetch_robot import FetchRobot
 
 if __name__ == '__main__':
     rospy.init_node("example_repub")
     robot = FetchRobot()
+
+    # robot.getUnReady()
     # print("hahaha")
-
-    print(robot.get_joint_states())
-
-    rospy.sleep(2)
     robot.getReady()
 
-    print(robot.get_joint_states())
-    rospy.sleep(2)
+    # # rospy.sleep(3)
+    # # robot.go(1, 2)
 
-    print(robot.get_joint_states())
-    rospy.sleep(2)
+    # robot.execute([[0.35, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]])
+    # # robot.getUnReady()
+    # rospy.sleep(2)
 
-    print(robot.get_joint_states())
+    # robot.report_fetch_state()
+    # print(robot.getGripperLocation())
 
+    # robot.execute([[0.35, 0.0, 0.0, 0.0, 0.5, 1.0, 1.0, 0.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]])
+
+    # rospy.sleep(5)
+
+    # robot.report_fetch_state()
+    # print(robot.getGripperLocation())
 
 # def joint_states_callback(message):
 #     # filter out joint0 position:

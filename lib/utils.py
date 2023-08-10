@@ -9,11 +9,18 @@ class Algorithms:
 
 class MatrixOperation:
 
-    def __init__(self) -> None:
-        self.axes = np.array([0, 0, 0, 1])
+    def __init__(self, axes=[0, 0, 0]) -> None:
+        self.axes = self.vectorizeXYZ(axes)
+
+    def vectorizeXYZ(self, axes):
+        try:
+            return np.array([[axes[0], axes[1], axes[2], 1]])
+        except Exception as e:
+            print(f"Failed to vectorize XYZ due to {e}. Return axes")
+            return axes
 
     def setAxes(self, axes=[0, 0, 0]) -> None:
-        self.axes = np.array([axes[0], axes[1], axes[2], 1])
+        self.axes = self.vectorizeXYZ(axes)
 
     def resetAxes(self) -> None:
         self.setAxes()
@@ -43,3 +50,11 @@ class MatrixOperation:
     def getInverseMatrix(self, A):
         return np.linalg.inv(A)
     
+    def combineTransform(self, newtransform, curr):
+        # M2 * (M1 * A)
+        return np.dot(newtransform, curr)
+    
+    def transform(self, old, transform_matrix):
+        new = np.dot(transform_matrix, np.transpose(old))
+
+        return np.transpose(new)
