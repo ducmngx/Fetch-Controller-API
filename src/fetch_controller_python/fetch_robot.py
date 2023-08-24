@@ -27,14 +27,18 @@ class FetchRobot:
         self.__driver = FetchBaseMove()
         self.__manipulator = FetchManipulator() 
         self.__gripper = Gripper()
+        self.__head_joints = {HEAD_JOINTS[i]: 0.0 for i in range(len(HEAD_JOINTS))}
         self.__joints = {ARM_AND_TORSO_JOINTS[i]: 0.0 for i in range(len(ARM_AND_TORSO_JOINTS))}
         self.__base_transform = self.__op.getTransformMatrix() # ones matrix
+        self.lookAt([[0.0 for _ in range(2)], [0.0 for _ in range(2)], [0.0 for _ in range(2)]])
         rospy.Subscriber(JOINT_STATES, JointState, self.__joint_states_callback, queue_size=1)
 
     def report_fetch_state(self):
         print("**********BEGIN**********\n")
         print(f"**********BASE**********\n(0, 0, 0) in odom frame is {self.__base_position}")
         print(f"Transform matrix from base to odom now is: \n {self.__base_transform}")
+        print(f"**********HEAD**********\n Joints' states:")
+        print(json.dumps(self.__head_joints, indent = 4))
         print(f"**********BODY**********\n Joints' states:")
         print(json.dumps(self.__joints, indent = 4))
         print("**********END**********\n\n")
@@ -76,12 +80,20 @@ class FetchRobot:
             pos = message.position[i]
             if name in self.__joints.keys():
                 self.__joints[name] = pos   
+            if name in self.__head_joints.keys():
+                self.__head_joints[name] = pos   
     
     def get_joint_states(self):
         '''
         Add comments
         '''
         return self.__joints.copy()
+    
+    def get_head_states(self):
+        '''
+        Add comments
+        '''
+        return self.__head_joints.copy()
 
     def execute(self, manipulation_matrix):
         '''
@@ -152,23 +164,6 @@ class FetchRobot:
         computed_base_location = self.__op.transform(grip_location, self.__op.getInverseMatrix(M))
 
         return computed_base_location
-
-    # def __getTransformationBase2Camera(self):
-    #     '''
-    #     Add comment
-    #     '''
-    #     current_joints = self.get_joint_states()
-    #     final_matrix = self.__op.getTransformMatrix()
-
-    #     # transform from base to torso
-    #     base2torso_translation = self.__op.getTransformMatrix(rotation=(0,0,0), translation=BASE2TORSO)
-    #     torso_action = self.__op.getTransformMatrix(rotation=(0,0,0), translation=(0, 0, current_joints['torso_lift_joint']))
-    #     base2torso_matrix = self.__op.combineTransform(torso_action, base2torso_translation)
-    #     final_matrix = self.__op.combineTransform(base2torso_matrix, final_matrix)
-
-    #     # transform from torso to shoulder pan
-        
-    #     return final_matrix
 
     def __getTransformationBase2Gripper(self):
         '''

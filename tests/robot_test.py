@@ -10,13 +10,13 @@ if __name__ == '__main__':
 
     # robot.getUnReady()
     # print("hahaha")
-    robot.getReady()
+    # robot.getReady()
 
-    # # rospy.sleep(3)
-    # # robot.go(1, 2)
+    # rospy.sleep(3)
+    # robot.go(1, 2)
 
     # robot.execute([[0.35, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]])
-    # # robot.getUnReady()
+    # robot.getUnReady()
     # rospy.sleep(2)
 
     # robot.report_fetch_state()
