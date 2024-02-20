@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import sys, os
-sys.path.insert(1, os.path.abspath("."))
+sys.path.insert(1, os.path.abspath("./.."))
 import actionlib
 import control_msgs.msg
 import rospy
