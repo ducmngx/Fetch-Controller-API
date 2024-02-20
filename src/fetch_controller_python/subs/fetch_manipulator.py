@@ -24,7 +24,7 @@ class FetchManipulator:
         self.arm_joints = ARM_AND_TORSO_JOINTS
 
 
-    def execute(self, manipulation_matrix, execution_time=2):
+    def execute(self, manipulation_matrix, execution_time=6):
         arm_trajectory = JointTrajectory()
         arm_trajectory.joint_names = self.arm_joints
         arm_trajectory.points.append(JointTrajectoryPoint())

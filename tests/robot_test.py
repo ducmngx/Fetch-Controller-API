@@ -8,14 +8,63 @@ if __name__ == '__main__':
     rospy.init_node("example_repub")
     robot = FetchRobot()
 
+    timeLimit = 6
+    robot.release()
+
+
+    rospy.sleep(2)
+
+
+    robot.getReady()
+
+    rospy.sleep(timeLimit)
+
+    # robot.release()
+
+    robot.execute([[0.35, 0.0, 0.0, 0.0, 2.0, 0.0, -2.0, 0.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]])
+
     # robot.getUnReady()
     # print("hahaha")
     # robot.getReady()
 
-    # rospy.sleep(3)
-    # robot.go(1, 2)
+    rospy.sleep(6)
+    # # robot.go(1, 2)
 
-    # robot.execute([[0.35, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]])
+
+    robot.execute([[0.35, 0.0, 0.0, 0.0, 1.2, 0.0, -1.2, 0.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]])
+
+    rospy.sleep(6)
+
+    robot.grasp()
+
+    rospy.sleep(3)
+
+    robot.execute([[0.35, 0.0, -0.03, 0.0, 1.2, 0.0, -1.2, 0.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]])
+
+    rospy.sleep(3)
+
+    # robot.release()
+
+    robot.execute([[0.35, 0.0, -0.03, 0.0, 2.0, 0.0, -2.0, 0.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]])
+
+    rospy.sleep(timeLimit)
+
+    # robot.release()
+
+    robot.execute([[0.35, 0.0, -0.03, 0.0, 1.2, 0.0, -1.2, 0.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]])
+
+    rospy.sleep(timeLimit)
+
+    robot.execute([[0.35, 0.0, 0.0, 0.0, 1.2, 0.0, -1.2, 0.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]])
+
+    rospy.sleep(timeLimit)
+
+    robot.release()
+
+    rospy.sleep(timeLimit)
+
+    robot.execute([[0.35, 0.0, 0.0, 0.0, 2.0, 0.0, -2.0, 0.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]])
+
     # robot.getUnReady()
     # rospy.sleep(2)
 
